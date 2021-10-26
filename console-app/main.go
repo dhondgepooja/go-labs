@@ -51,24 +51,34 @@ func main() {
 	fmt.Println("6 - Espresso")
 	fmt.Println("Q - Quit the program")
 
-	for {
-		char, _, err := keyboard.GetSingleKey()
+	char := ' '
+
+	for char != 'q' && char != 'Q' {
+		char, _, err = keyboard.GetSingleKey()
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		if char == 'q' || char == 'Q' {
-			break
-		}
-
 		//t1 := fmt.Sprintf("You chose %q", char) // char is of type rune which is basically the char java type
 		//fmt.Println(t1)                         // this prints 0 as '0'
+		fmt.Println(string(char))
 		i, _ := strconv.Atoi(string(char))
+
+		// OPTION 1
+		_, ok := coffees[i]
+		if ok {
+			t3 := fmt.Sprintf("you chose %s", coffees[i])
+			fmt.Println(t3)
+		}
+
+		// OPTION 2
+		if _, ok := coffees[i]; ok {
+			t3 := fmt.Sprintf("you chose %s", coffees[i])
+			fmt.Println(t3)
+		}
+
 		//t2 := fmt.Sprintf("You chose %d", i) // this prints 0  as 0
 		//fmt.Println(t2)
-
-		t3 := fmt.Sprintf("you chose %s", coffees[i])
-		fmt.Println(t3)
 
 	}
 
